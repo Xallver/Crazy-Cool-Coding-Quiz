@@ -174,10 +174,10 @@ function checkAnswer(answer) {
     }
 }
 
-function ChooseA() { checkAnswer(0); }
-function ChooseB() { checkAnswer(1); }
-function ChooseC() { checkAnswer(2); }
-function ChooseD() { checkAnswer(3); }
+function chooseA() { checkAnswer(0); }
+function chooseB() { checkAnswer(1); }
+function chooseC() { checkAnswer(2); }
+function chooseD() { checkAnswer(3); }
 
 // When all questions are answered or timer reaches 0 seconds run game over function
 function gameOver() {
@@ -264,8 +264,30 @@ function showHighScores() {
 }
 
 
+// Event Listeners 
 
+startQuizBtn.addEventListener("click", newQuiz);
+choiceA.addEventListener("click", chooseA);
+choiceB.addEventListener("click", chooseB);
+choiceC.addEventListener("click", chooseC);
+choiceD.addEventListener("click", chooseD);
 
+submitInitialBtn.addEventListener("click", function(event) {
+    storeHighScores(event);
+});
 
+viewHighScore.addEventListener("click", function(event) {
+    showHighScores(event);
+});
 
+goBackBtn.addEventListener("click", function() {
+    startDiv.style.display = "block";
+    highScoreSection.style.display = "none";
+});
+
+clearHighScoreBtn.addEventListener("click", function() {
+    window.localStorage.removeItem("high scores");
+    listOfHighScores.innerHTML = "High Scores Cleared!";
+    listOfHighScores.setAttribute("style", "font-family: sans-serif; font-style: italic;")
+});
 
