@@ -27,7 +27,7 @@ const questions = [
     },
     {
         question: "How do you write 'Hello World' in an alert box?",
-        choices: ["a. alertBox(\"Hello World\");", "b. alert(\"Hello World\");", "c. msgBox(\"Hello World\")", "d. msg(\"Hello World\");" ],
+        choices: ["a. alertBox(\"Hello World\");", "b. alert(\"Hello World\");", "c. msgBox(\"Hello World\")", "d. msg(\"Hello World\");"],
         answer: "b. alert('Hello World');"
     },
     {
@@ -47,7 +47,7 @@ const questions = [
     },
     {
         question: "What is the correct way to write a JavaScript array?",
-        choices: ["a. var colors = [\"red","green","blue\"]", "b. var colors = (1:\"red\", 2:\"green\", 3:\"blue\")", "c. var colors = \"red\", \"green\", \"blue\"", "d. var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")"],
+        choices: ["a. var colors = [\"red", "green", "blue\"]", "b. var colors = (1:\"red\", 2:\"green\", 3:\"blue\")", "c. var colors = \"red\", \"green\", \"blue\"", "d. var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")"],
         answer: "a. var colors = [\"red\", \"green\", \"blue\"]"
     },
     {
@@ -113,7 +113,7 @@ function newQuiz() {
     timer.style.display = "block";
     timesUp.style.display = "none";
 
-    var startTimer = setInterval(function() {
+    var startTimer = setInterval(function () {
         totalTime--;
         timeLeft.textContent = totalTime;
         if (totalTime <= 0) {
@@ -141,12 +141,12 @@ function nextQuestion() {
     choiceA.textContent = questions[questionIndex].choices[0];
     choiceB.textContent = questions[questionIndex].choices[1];
     choiceC.textContent = questions[questionIndex].choices[2];
-    choiceD.textContent = questions[questionIndex].choices[3];    
+    choiceD.textContent = questions[questionIndex].choices[3];
 }
 
 
 // After question is answered, show if correct or wrong
- function checkAnswer(answer) {
+function checkAnswer(answer) {
 
     var lineBreak = document.getElementById("lineBreak");
     lineBreak.style.display = "block";
@@ -172,22 +172,70 @@ function nextQuestion() {
         // if no more questions, run 'game over' function
         gameOver();
     }
- }
+}
 
- function ChooseA() { checkAnswer(0); }
- function ChooseB() { checkAnswer(1); }
- function ChooseC() { checkAnswer(2); }
- function ChooseD() { checkAnswer(3); }
+function ChooseA() { checkAnswer(0); }
+function ChooseB() { checkAnswer(1); }
+function ChooseC() { checkAnswer(2); }
+function ChooseD() { checkAnswer(3); }
 
- // When all questions are answered or timer reaches 0 seconds run game over function
- function gameOver() {
-     summary.style.display = "block";
-     questionDiv.style.display = "none";
-     startDiv.style.display = "none";
-     timer.style.display = "none";
-     timesUp.style.display = "block";
+// When all questions are answered or timer reaches 0 seconds run game over function
+function gameOver() {
+    summary.style.display = "block";
+    questionDiv.style.display = "none";
+    startDiv.style.display = "none";
+    timer.style.display = "none";
+    timesUp.style.display = "block";
 
-     // Show final score
-     finalScore.textContent = correctAns;
- }
- 
+    // Show final score
+    finalScore.textContent = correctAns;
+}
+
+// Enter Initials & Store Highscore in localStorage
+function storeHighScores(event) {
+    event.preventDefault();
+
+    // stop function if initials is blank
+    if (!initialInput.value) {
+        alert("Please enter your initials!");
+        return;
+    }
+
+    startDiv.style.display = "none";
+    timer.style.display = "none";
+    timesUp.style.display = "none";
+    summary.style.display = "none";
+    highScoreSection.style.display = "block";
+
+    // Store scores in LocalStorage
+    var savedHighScores = localStorage.getItem("high scores");
+    var scoresArray;
+
+    if (!savedHighScores) {
+        scoresArray = [];
+    } else {
+        scoresArray = JSON.parse(savedHighScores)
+    }
+
+    var userScore = {
+        initials: initialInput.value,
+        score: finalScore.textContent
+    };
+
+    console.log(userScore);
+    scoresArray.push(userScore);
+
+
+    // Change array back into string in order to store in localStorage
+    var scoresArrayString = JSON.stringify(scoresArray);
+    window.localStorage.setItem("high scores", scoresArrayString);
+
+    // Show current highscores
+    showHighScores();
+}
+
+
+
+
+
+
