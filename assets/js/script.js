@@ -28,7 +28,7 @@ const questions = [
     {
         question: "How do you write 'Hello World' in an alert box?",
         choices: ["a. alertBox(\"Hello World\");", "b. alert(\"Hello World\");", "c. msgBox(\"Hello World\")", "d. msg(\"Hello World\");"],
-        answer: "b. alert('Hello World');"
+        answer: "b. alert(\"Hello World\");"
     },
     {
         question: "How do you write an IF statement in JavaScript?",
@@ -47,7 +47,7 @@ const questions = [
     },
     {
         question: "What is the correct way to write a JavaScript array?",
-        choices: ["a. var colors = [\"red", "green", "blue\"]", "b. var colors = (1:\"red\", 2:\"green\", 3:\"blue\")", "c. var colors = \"red\", \"green\", \"blue\"", "d. var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")"],
+        choices: ["a. var colors = [\"red\", \"green\", \"blue\"]", "b. var colors = (1:\"red\", 2:\"green\", 3:\"blue\")", "c. var colors = \"red\", \"green\", \"blue\"", "d. var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")"],
         answer: "a. var colors = [\"red\", \"green\", \"blue\"]"
     },
     {
@@ -154,7 +154,7 @@ function checkAnswer(answer) {
 
     if (questions[questionIndex].answer === questions[questionIndex].choices[answer]) {
         // If answer is correct, add 1 score to final score
-        correct++;
+        correctAns++;
         // console.log(correctAns);
         answerCheck.textContent = "Correct!";
     } else {
@@ -272,22 +272,24 @@ choiceB.addEventListener("click", chooseB);
 choiceC.addEventListener("click", chooseC);
 choiceD.addEventListener("click", chooseD);
 
-submitInitialBtn.addEventListener("click", function(event) {
+submitInitialBtn.addEventListener("click", function (event) {
     storeHighScores(event);
 });
 
-viewHighScore.addEventListener("click", function(event) {
+viewHighScore.addEventListener("click", function (event) {
     showHighScores(event);
 });
 
-goBackBtn.addEventListener("click", function() {
+goBackBtn.addEventListener("click", function () {
     startDiv.style.display = "block";
     highScoreSection.style.display = "none";
 });
 
-clearHighScoreBtn.addEventListener("click", function() {
+clearHighScoreBtn.addEventListener("click", function () {
     window.localStorage.removeItem("high scores");
     listOfHighScores.innerHTML = "High Scores Cleared!";
     listOfHighScores.setAttribute("style", "font-family: sans-serif; font-style: italic;")
+
+    console.log(clearHighScoreBtn);
 });
 
