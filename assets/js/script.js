@@ -126,3 +126,24 @@ function newQuiz() {
 
     showQuiz();
 };
+
+console.log(questions[questionIndex].question);
+console.log(questions[questionIndex].choices);
+
+
+// Then will be presented with questions/choices
+function showQuiz() {
+    nextQuestion();
+}
+
+function nextQuestion() {
+    questionTitle.textContent = questions[questionIndex].question;
+    choiceA.textContent = questions[questionIndex].choices[0];
+    choiceB.textContent = questions[questionIndex].choices[1];
+    choiceC.textContent = questions[questionIndex].choices[2];
+    choiceD.textContent = questions[questionIndex].choices[3];    
+}
+
+
+// After question is answered, show if correct or wrong
+ 
