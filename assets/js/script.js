@@ -146,4 +146,35 @@ function nextQuestion() {
 
 
 // After question is answered, show if correct or wrong
- 
+ function checkAnswer(answer) {
+
+    var lineBreak = document.getElementById("lineBreak");
+    lineBreak.style.display = "block";
+    answerCheck.style.display = "block";
+
+    if (questions[questionIndex].answer === questions[questionIndex].choices[answer]) {
+        // If answer is correct, add 1 score to final score
+        correct++;
+        // console.log(correctAns);
+        answerCheck.textContent = "Correct!";
+    } else {
+        // If answer is wrong, deduct 10 seconds from timer
+        totalTime -= 10;
+        timeLeft.textContent = totalTime;
+        answerCheck.textContent = "Wrong! The correct answer is: " + questions[questionIndex].answer;
+    }
+
+    questionIndex++;
+    // Repeat with the rest of questions
+    if (questionIndex < questions.length) {
+        nextQuestion();
+    } else {
+        // if no more questions, run 'game over' function
+        gameOver();
+    }
+ }
+
+ function ChooseA() { checkAnswer(0); }
+ function ChooseB() { checkAnswer(1); }
+ function ChooseC() { checkAnswer(2); }
+ function ChooseD() { checkAnswer(3); }
