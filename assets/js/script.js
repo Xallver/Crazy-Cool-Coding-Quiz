@@ -178,3 +178,16 @@ function nextQuestion() {
  function ChooseB() { checkAnswer(1); }
  function ChooseC() { checkAnswer(2); }
  function ChooseD() { checkAnswer(3); }
+
+ // When all questions are answered or timer reaches 0 seconds run game over function
+ function gameOver() {
+     summary.style.display = "block";
+     questionDiv.style.display = "none";
+     startDiv.style.display = "none";
+     timer.style.display = "none";
+     timesUp.style.display = "block";
+
+     // Show final score
+     finalScore.textContent = correctAns;
+ }
+ 
