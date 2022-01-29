@@ -253,20 +253,23 @@ function showHighScores() {
     highScoreSection.style.display = "block";
 
     var savedHighScores = localStorage.getItem("high scores");
+    
 
     // Check if any scores in localStorage
-    if (!savedHighScores) {
+    if (!savedHighScores) {        
         return false;
     }
     console.log(savedHighScores);
 
     var storedHighScores = JSON.parse(savedHighScores);
 
-    for (var i = 0; i < storedHighScores.length; i++) {
+    for (; i < storedHighScores.length; i++) {
         var eachNewHighScore = document.createElement("p");
         eachNewHighScore.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score;
         listOfHighScores.appendChild(eachNewHighScore);
     }
+    
+    
 }
 
 
